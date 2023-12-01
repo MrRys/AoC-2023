@@ -55,15 +55,15 @@ int solve(bool ishard)
     char line[MAX_LINE + 5] = {0};
     while (fgets(line, MAX_LINE, stdin))
     {
-        int i = 0;
-        while (!isdigit(line[i]) && (!ishard || !isspelleddigit(line, i)))
-            i++;
+        int f = 0;
+        while (!isdigit(line[f]) && (!ishard || !isspelleddigit(line, f)))
+            f++;
 
-        int j = MAX_LINE - 1;
-        while (!isdigit(line[j]) && (!ishard || !isspelleddigit(line, j)))
-            j--;
+        int l = MAX_LINE - 1;
+        while (!isdigit(line[l]) && (!ishard || !isspelleddigit(line, l)))
+            l--;
 
-        result += parsedigit(line, i) * 10 + parsedigit(line, j);
+        result += parsedigit(line, f) * 10 + parsedigit(line, l);
 
         memset(line, 0, MAX_LINE);
     }
@@ -73,9 +73,7 @@ int solve(bool ishard)
 
 int main(int argc, char *argv[])
 {
-    bool ishard = false;
-    if (argc > 1 && argv[1][0] == 'h')
-        ishard = true;
+    bool ishard = argc > 1 && argv[1][0] == 'h';
 
     int result = solve(ishard);
     printf("%d\n", result);
