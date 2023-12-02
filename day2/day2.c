@@ -26,13 +26,12 @@ int solve()
 {
     int result = 0;
 
-    int game;
+    char color;
+    int game, count;
     while (scanf("Game %d:", &game) > 0)
     {
-        int count;
-        char color;
         bool ispossible = true;
-        while (scanf("%*c%d %c%*[^,;\n]", &count, &color) > 0)
+        while (scanf("%d %c%*[^ \n]", &count, &color) > 0)
         {
             if (!check_possible(color, count))
             {
