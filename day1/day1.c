@@ -56,12 +56,16 @@ int solve(bool ishard)
     while (fgets(line, MAX_LINE, stdin))
     {
         int f = 0;
-        while (!isdigit(line[f]) && (!ishard || !isspelleddigit(line, f)))
+        while (!isdigit(line[f]) && (!ishard || !isspelleddigit(line, f))) 
+        {
             f++;
-
+        }
+        
         int l = MAX_LINE - 1;
-        while (!isdigit(line[l]) && (!ishard || !isspelleddigit(line, l)))
+        while (!isdigit(line[l]) && (!ishard || !isspelleddigit(line, l)))  
+        {
             l--;
+        }
 
         result += parsedigit(line, f) * 10 + parsedigit(line, l);
 
