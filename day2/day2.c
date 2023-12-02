@@ -51,13 +51,12 @@ int solve_hard()
 {
     int result = 0;
 
-    int game;
+    char color;
+    int game, count;
     while (scanf("Game %d:", &game) > 0)
     {
-        int count;
-        char color;
         int r = 0, g = 0, b = 0;
-        while (scanf("%*c%d %c%*[^,;\n]", &count, &color) > 0)
+        while (scanf("%d %c%*[^ \n]", &count, &color) > 0)
         {
             switch (color)
             {
