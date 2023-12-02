@@ -75,7 +75,6 @@ int solve_hard()
             }
         }
         result += r * g * b;
-        r = g = b = 0;
     }
     return result;
 }
