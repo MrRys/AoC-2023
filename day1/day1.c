@@ -65,7 +65,7 @@ int solve(bool ishard)
 
         result += parsedigit(line, f) * 10 + parsedigit(line, l);
 
-        memset(line, 0, MAX_LINE);
+        memset(line + f, 0, l - f + 1);
     }
 
     return result;
