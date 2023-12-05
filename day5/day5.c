@@ -7,7 +7,7 @@
 #define MIN(a, b) (a < b ? a : b)
 #define MAX(a, b) (a > b ? a : b)
 
-#define SEEDS 100000
+#define SEEDS 150
 #define MAPS 7
 #define RANGES 50
 
