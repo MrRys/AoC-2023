@@ -53,6 +53,8 @@ int solve(int times[RACES], int distances[RACES], int total_races) {
         for (int hold = 1; hold < curr_time - 1; hold++) {
             if (hold * (curr_time - hold) > curr_dist) {
                 count++;
+            } else if (count > 0) {
+                break;
             }
         }
 
@@ -67,6 +69,8 @@ int solve_hard(long time, long distance) {
     for (long hold = 1; hold < time - 1; hold++) {
         if (hold * (time - hold) > distance) {
             result++;
+        } else if (result > 0) {
+            break;
         }
     }
     return result;
