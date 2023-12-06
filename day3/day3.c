@@ -26,7 +26,7 @@ int solve(char map[MAX_LINE][MAX_LINE], int rows) {
 
     for (int row = 0; row < rows; row++) {
         int num_start = -1, num_end = -1;
-        for (int col = 0; map[row][col] != '\0'; col++) {
+        for (int col = 0; col < MAX_LINE; col++) {
             if (isdigit(map[row][col])) {
                 if (num_start < 0) {
                     num_start = col;
@@ -72,7 +72,7 @@ int solve_hard(char map[MAX_LINE][MAX_LINE], int rows) {
 
     for (int row = 0; row < rows; row++) {
         int num_start = -1, num_end = -1;
-        for (int col = 0; map[row][col] != '\0'; col++) {
+        for (int col = 0; col < MAX_LINE; col++) {
             if (isdigit(map[row][col])) {
                 if (num_start < 0) {
                     num_start = col;
