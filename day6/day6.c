@@ -50,7 +50,7 @@ int solve(int times[RACES], int distances[RACES], int total_races) {
         int curr_dist = distances[race_idx];
         int count = 0;
 
-        for (int hold = 1; hold < curr_time - 1; hold++) {
+        for (int hold = 1; hold < curr_time; hold++) {
             if (hold * (curr_time - hold) > curr_dist) {
                 count++;
             } else if (count > 0) {
@@ -66,7 +66,7 @@ int solve(int times[RACES], int distances[RACES], int total_races) {
 
 int solve_hard(long time, long distance) {
     int result = 0;
-    for (long hold = 1; hold < time - 1; hold++) {
+    for (long hold = 1; hold < time; hold++) {
         if (hold * (time - hold) > distance) {
             result++;
         } else if (result > 0) {
