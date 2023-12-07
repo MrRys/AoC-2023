@@ -114,13 +114,15 @@ void parse_hands(Hand hands[HANDS], int *total_hands) {
     int bid;
 
     *total_hands = 0;
-    while (scanf("%s %d\n", hand_str, &bid) > 0) {
+    while (scanf("%s %d", hand_str, &bid) > 0) {
         int card_counts[CARDS] = {0};
+
         for (int card_idx = 0; card_idx < HAND_SIZE; card_idx++) {
             Card curr_card = get_card(hand_str[card_idx]);
             hands[*total_hands].cards[card_idx] = curr_card;
             card_counts[curr_card]++;
         }
+        
         hands[*total_hands].bid = bid;
         hands[*total_hands].hand_type = get_hand_type(card_counts);
         (*total_hands)++;
