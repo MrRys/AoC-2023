@@ -65,12 +65,10 @@ int solve(int history[MAX_HISTORY][MAX_HISTORY], int history_len, bool ishard) {
     int last_row = 0;
     generate_differences(history, history_len, &last_row);
 
-    if (ishard) {
-        for (int r = last_row; r >= 0; r--) {
+    for (int r = last_row; r >= 0; r--) {
+        if (ishard) {
             result = history[r][r] - result;
-        }
-    } else {
-        for (int r = last_row; r >= 0; r--) {
+        } else {
             result = history[r][history_len - 1] + result;
         }
     }
