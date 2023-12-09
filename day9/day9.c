@@ -71,7 +71,7 @@ int solve(int history[MAX_HISTORY][MAX_HISTORY], int history_len, bool ishard) {
         }
     } else {
         for (int r = last_row; r >= 0; r--) {
-            result += history[r][history_len - 1];
+            result = history[r][history_len - 1] + result;
         }
     }
 
