@@ -38,13 +38,11 @@ bool is_perfect(char mirror[MAX_SIZE][MAX_SIZE], int height, int start) {
 
 int find_horizontal_reflexion(char mirror[MAX_SIZE][MAX_SIZE], int height) {
     for (int row = 0; row < height - 1; row++) {
-        bool is_reflexion = true;
-
         if (strdiff(mirror[row], mirror[row + 1]) > ishard) {
-            is_reflexion = false;
+            continue;
         }
 
-        if (is_reflexion && is_perfect(mirror, height, row)) {
+        if (is_perfect(mirror, height, row)) {
             return row + 1;
         }
     }
@@ -79,9 +77,10 @@ int main(int argc, char *argv[]) {
     int width = 0, height = 0;
     char line[MAX_SIZE] = {0};
     char mirror[MAX_SIZE][MAX_SIZE] = {0};
+    char *read = NULL;
 
-    while (true) {
-        char *read = fgets(line, MAX_SIZE, stdin);
+    do {
+        read = fgets(line, MAX_SIZE, stdin);
 
         if (read != NULL && line[0] != '\n') {
             sscanf(line, "%s", mirror[height++]);
@@ -90,13 +89,11 @@ int main(int argc, char *argv[]) {
 
         width = strlen(mirror[0]);
         result += solve(mirror, width, height);
+
         width = height = 0;
         memset(mirror, 0, MAX_SIZE * MAX_SIZE);
 
-        if (read == NULL) {
-            break;
-        }
-    }
+    } while (read != NULL);
 
     printf("%d\n", result);
 }
