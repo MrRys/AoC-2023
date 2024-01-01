@@ -138,10 +138,12 @@ bool is_goal(Node *node) {
     return node->row == GOAL_ROW && node->col == GOAL_COL;
 }
 
-void free_pqueue(Node **pqueue, int qsize) {
+void free_pqueue(Node **pqueue, int *qsize) {
     for (int i = 0; i < qsize; i++) {
         free(pqueue[i]);
     }
+
+    *qsize = 0;
 }
 
 void generate_node(char map[MAP_SIZE][MAP_SIZE], int min_g[MAP_SIZE][MAP_SIZE][11][5], int height, int width, Node *pqueue[QUEUE_SIZE], int *qsize, Node *curr_node, Direction dir, int same_dir_count) {
@@ -213,7 +215,7 @@ int a_star(char map[MAP_SIZE][MAP_SIZE], int height, int width) {
         free(curr_node);
     }
 
-    free_pqueue(pqueue, qsize);
+    free_pqueue(pqueue, &qsize);
 
     return result;
 }
