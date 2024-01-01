@@ -61,10 +61,6 @@ Node *init_node(Direction dir, int same_dir_count, int row, int col, int g_score
     return new_node;
 }
 
-int manhattan_distance(int r1, int c1, int r2, int c2) {
-    return abs((r1 - r2) + (c1 - c2));
-}
-
 void push(Node *pqueue[QUEUE_SIZE], int *qsize, Node *node) {
     pqueue[*qsize] = node;
     (*qsize)++;
@@ -88,6 +84,18 @@ Node *pop(Node *pqueue[QUEUE_SIZE], int *qsize) {
     (*qsize)--;
 
     return min;
+}
+
+void free_pqueue(Node **pqueue, int *qsize) {
+    for (int i = 0; i < *qsize; i++) {
+        free(pqueue[i]);
+    }
+
+    *qsize = 0;
+}
+
+int manhattan_distance(int r1, int c1, int r2, int c2) {
+    return abs((r1 - r2) + (c1 - c2));
 }
 
 int get_cost(char block) {
@@ -136,14 +144,6 @@ bool move(int height, int width, Node *curr_node, Direction new_dir, int *row, i
 
 bool is_goal(Node *node) {
     return node->row == GOAL_ROW && node->col == GOAL_COL;
-}
-
-void free_pqueue(Node **pqueue, int *qsize) {
-    for (int i = 0; i < qsize; i++) {
-        free(pqueue[i]);
-    }
-
-    *qsize = 0;
 }
 
 void generate_node(char map[MAP_SIZE][MAP_SIZE], int min_g[MAP_SIZE][MAP_SIZE][11][5], int height, int width, Node *pqueue[QUEUE_SIZE], int *qsize, Node *curr_node, Direction dir, int same_dir_count) {
