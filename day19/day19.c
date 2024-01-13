@@ -60,9 +60,6 @@ int get_label_index(char *label) {
         index *= 100;
         index += label[i] - 'a';
     }
-    if (index == -52767899) {
-        printf("label: %s\n", label);
-    }
     return index;
 }
 
@@ -137,46 +134,22 @@ int solve(Workflow *workflows, Part *parts, int parts_count) {
                 char curr_op = curr_workflow.conditions[cond].operation;
                 int curr_dst = curr_workflow.conditions[cond].dst;
 
-                if (curr_cat == NONE) {
-                    if (curr_dst == ACCEPT) {
-                        result += accept(curr_part);
-                        finished = true;
-                        break;
-                    } else if (curr_dst == REJECT) {
-                        finished = true;
-                        break;
-                    } else {
-                        curr_workflow = workflows[curr_dst];
-                        break;
+                if (curr_cat == NONE ||
+                    (curr_op == '>' && curr_val > curr_comp) ||
+                    (curr_op == '<' && curr_val < curr_comp)) {
+                    switch (curr_dst) {
+                        case ACCEPT:
+                            result += accept(curr_part);
+                            finished = true;
+                            break;
+                        case REJECT:
+                            finished = true;
+                            break;
+                        default:
+                            curr_workflow = workflows[curr_dst];
                     }
-                }
 
-                if (curr_op == '>' && curr_val > curr_comp) {
-                    if (curr_dst == ACCEPT) {
-                        result += accept(curr_part);
-                        finished = true;
-                        break;
-                    } else if (curr_dst == REJECT) {
-                        finished = true;
-                        break;
-                    } else {
-                        curr_workflow = workflows[curr_dst];
-                        break;
-                    }
-                }
-
-                if (curr_op == '<' && curr_val < curr_comp) {
-                    if (curr_dst == ACCEPT) {
-                        result += accept(curr_part);
-                        finished = true;
-                        break;
-                    } else if (curr_dst == REJECT) {
-                        finished = true;
-                        break;
-                    } else {
-                        curr_workflow = workflows[curr_dst];
-                        break;
-                    }
+                    break;
                 }
             }
         }
