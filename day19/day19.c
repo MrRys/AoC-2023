@@ -212,7 +212,7 @@ lu count_accepted(Workflow *workflows, int src_idx, int ranges[5][2]) {
             break;
         }
 
-        // count ranges would move to a new workflow
+        // count ranges that would move to a new workflow
         int new_ranges[5][2] = {0};
         copy_ranges(ranges, new_ranges);
         new_ranges[curr_cnd.on_ctg][0] = acc_range[0];
